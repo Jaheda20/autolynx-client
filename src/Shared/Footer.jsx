@@ -1,3 +1,4 @@
+import logo from "/images/logo2.png"
 
 const Footer = () => {
     return (
@@ -53,10 +54,21 @@ const Footer = () => {
                                     d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path>
                             </svg>
                         </a>
+
                     </div>
+                    
                 </nav>
             </footer>
             <div className="max-w-7xl mx-auto w-full flex items-center justify-center py-8">
+            <aside className="flex items-center mt-8">
+                        <img src={logo} alt="" className="w-20  "/>
+                        <p className="gap-0 text-2xl font-extrabold text-blue-500">
+                            A<span className="text-yellow-500">utoLynx AB</span>
+                            
+                        </p>
+                    </aside>
+            </div>
+            <div className="max-w-7xl mx-auto w-full flex items-center justify-center pb-8">
                 <aside>
                     <p>Copyright © {new Date().getFullYear()} - All right reserved by AutoLynx Industries Ltd</p>
                 </aside>
