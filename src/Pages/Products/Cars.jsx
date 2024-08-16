@@ -8,6 +8,8 @@ import { useState } from "react";
 const Cars = () => {
 
     const axiosPublic = useAxiosPublic();
+    const [itemsPerPage, setItemsPerPage] = useState(5)
+    const [currentPage, setCurrentPage] = useState(1)
     const [search, setSearch] = useState('');
     const [sort, setSort] = useState({field: '', order: ''});
     
@@ -17,17 +19,27 @@ const Cars = () => {
             params: {
                 search,
                 sortField: sort.field,
-                sortOrder: sort.order
+                sortOrder: sort.order,
+                page: currentPage,
+                size: itemsPerPage
             }
         })
         return data
     }
     
-    const { data: cars = [], isLoading, isError, error, refetch } = useQuery({
-        queryKey: ['car', { search, sort }],
+    const { data: carData = {}, isLoading, isError, error, refetch } = useQuery({
+        queryKey: ['car', { search, sort, currentPage, itemsPerPage }],
         queryFn: getData,
         // keepPreviousData: true
     })
+
+    const { cars = [], totalPages = 0} = carData;
+
+    const handlePageChange = (page) => {
+        setCurrentPage(page)
+        refetch()
+    }
+    
 
     if (isLoading) return (
         <div className="flex items-center justify-center text-7xl my-40">
@@ -53,7 +65,9 @@ const Cars = () => {
                     refetch={refetch}
                     search={search}
                     setSearch={setSearch}
-                    
+                    setItemsPerPage={setItemsPerPage}
+                    itemsPerPage={itemsPerPage}
+                    handlePageChange={handlePageChange}
                     ></Functionalities>
                 </div>
                 <div className="w-2/3 ">
@@ -62,7 +76,9 @@ const Cars = () => {
                     refetch={refetch}
                     sort={sort}
                     setSort={setSort}
-                    
+                    currentPage={currentPage}
+                    totalPages={totalPages}
+                    handlePageChange={handlePageChange}
                     ></CarCards>
                 </div>
             </div>
