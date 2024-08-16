@@ -19,7 +19,7 @@ const CarCover = () => {
                     <h1
                         className="mb-5 text-5xl md:text-7xl font-semibold"
                     >
-                        Contact Us
+                        All Cars
                     </h1>
 
                 </div>
