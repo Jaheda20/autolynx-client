@@ -9,16 +9,24 @@ const Cars = () => {
 
     const axiosPublic = useAxiosPublic();
     const [search, setSearch] = useState('');
-    const [sort, setSort] = useState()
+    const [sort, setSort] = useState({field: '', order: ''});
+    
 
     const getData = async() =>{
-        const { data } = await axiosPublic.get(`/cars?search=${search}&sort=${sort}`)
+        const { data } = await axiosPublic.get(`/cars`, {
+            params: {
+                search,
+                sortField: sort.field,
+                sortOrder: sort.order
+            }
+        })
         return data
     }
     
     const { data: cars = [], isLoading, isError, error, refetch } = useQuery({
         queryKey: ['car', { search, sort }],
-        queryFn: getData
+        queryFn: getData,
+        // keepPreviousData: true
     })
 
     if (isLoading) return (
@@ -51,8 +59,10 @@ const Cars = () => {
                 <div className="w-2/3 ">
                     <CarCards 
                     cars={cars}
+                    refetch={refetch}
                     sort={sort}
                     setSort={setSort}
+                    
                     ></CarCards>
                 </div>
             </div>
