@@ -1,6 +1,7 @@
 import { FaRegUserCircle } from "react-icons/fa";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
+import { TbLogout, TbLogout2 } from "react-icons/tb";
 
 
 const Nav = () => {
@@ -16,28 +17,52 @@ const Nav = () => {
 
     const navOptions = (
         <>
-            <li><NavLink className={({ isActive }) => isActive ? 'text-yellow-200 font-bold md:text-lg' : "text-blue-100 md:text-lg font-semibold"} to="/">Home</NavLink></li>
-            <li><NavLink className={({ isActive }) => isActive ? 'text-yellow-200 font-bold md:text-lg' : "text-blue-100 md:text-lg font-semibold"} to="/about">About</NavLink></li>
+            <li><NavLink className={({ isActive }) => isActive ? 'bg-yellow-100 font-bold md:text-lg' : "text-blue-100 md:text-lg font-semibold"} to="/">Home</NavLink></li>
+            <li><NavLink className={({ isActive }) => isActive ? 'bg-yellow-100 font-bold md:text-lg' : "text-blue-100 md:text-lg font-semibold"} to="/cars">Cars</NavLink></li>
+            <li><NavLink className={({ isActive }) => isActive ? 'bg-yellow-100 font-bold md:text-lg' : "text-blue-100 md:text-lg font-semibold"} to="/about">About</NavLink></li>
+            <li><NavLink className={({ isActive }) => isActive ? 'bg-yellow-100 font-bold md:text-lg' : "text-blue-100 md:text-lg font-semibold"} to="/contact">Contact</NavLink></li>
             {
-                user ? <>
-                    <li>
-                        <p className="md:text-lg text-yellow-100">{user?.displayName} Profile</p>
-                    </li>
-                    <li>
-                        <button onClick={handleLogOut} className="md:text-lg text-yellow-100">Log out</button>
-                    </li>
+                user ? (
+                    <>
+                        <li>
+                            <details className="dropdown dropdown-bottom dropdown-end">
+                                <summary className="m-1">
+                                    <div>
+                                        <img className="w-8 h-8 md:w-12 md:h-12  rounded-full" src={user?.photoURL
+                                        } alt="" />
+                                    </div>
 
-                </>
+                                </summary>
+                                <ul className="p-2 shadow menu dropdown-content z-10 bg-base-100 rounded-box w-48">
+                                    <li><p className="text-yellow-600 font-bold">
+                                    {user?.displayName || 'Unknown User'}
+                                    </p>
+                                        </li>
+
+                                    <li><p onClick={() => handleLogOut()} className="text-yellow-600 font-bold"> <TbLogout className="mr-2" />
+                                        Log out </p>
+                                    </li>
+                                </ul>
+                            </details>
+                        </li>
+                        {/* <li>
+                            <div className="tooltip flex tooltip-bottom" data-tip={user?.displayName || 'Unknown User'}>
+                                <img className="w-8 h-8 md:w-12 md:h-12  rounded-full" src={user?.photoURL
+                                } alt="" />
+                            </div>
+                        </li>
+
+                        <li><p onClick={() => handleLogOut()} className="text-yellow-200 md:text-lg"> <TbLogout className="mr-2" />
+                            Log out </p>
+                        </li> */}
+
+                    </>
+
+                )
                     :
-                    <li><NavLink className={({ isActive }) => isActive ? 'text-yellow-200 font-bold md:text-lg md:ml-4' : "md:ml-4 text-blue-100 md:text-lg font-semibold"} to="/login"><FaRegUserCircle />Login
-                    </NavLink></li>
+                    (<li><NavLink className={({ isActive }) => isActive ? 'text-yellow-200 font-bold md:text-lg md:ml-4' : "md:ml-4 text-blue-100 md:text-lg font-semibold"} to="/login"><FaRegUserCircle />Login
+                    </NavLink></li>)
             }
-
-            {/* <li><NavLink className={({ isActive }) => isActive ? 'text-yellow-200 font-bold md:text-lg md:ml-4' : "md:ml-4 text-blue-100 md:text-lg font-semibold"} to="/login"><FaRegUserCircle />
-            </NavLink></li> */}
-
-
-
         </>
     )
 
@@ -45,8 +70,9 @@ const Nav = () => {
 
         <div className="navbar absolute bg-transparent mx-auto w-full z-20">
             <div className="navbar-start">
+
                 <div className="dropdown">
-                    <div tabIndex={0} role="button" className="btn btn-ghost text-yellow-100 lg:hidden">
+                    <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden text-yellow-200">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="h-5 w-5"
@@ -62,32 +88,7 @@ const Nav = () => {
                     </div>
                     <ul
                         tabIndex={0}
-                        className="menu menu-sm dropdown-content bg-gray-400 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                        {navOptions}
-                        {/* <li>
-                            <Link to={"/login"} className="flex items-center "><FaArrowRightFromBracket />
-                                Login</Link>
-                        </li> */}
-                    </ul>
-                </div>
-                <div className="dropdown">
-                    <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-5 w-5"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor">
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M4 6h16M4 12h8m-8 6h16" />
-                        </svg>
-                    </div>
-                    <ul
-                        tabIndex={0}
-                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                        className="menu menu-sm dropdown-content bg-base-600 rounded-box z-[1] mt-3 w-52 p-2 shadow">
                         {navOptions}
                     </ul>
                 </div>
