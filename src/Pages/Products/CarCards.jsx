@@ -57,7 +57,7 @@ const CarCards = ({ cars, sort, setSort, refetch, currentPage, totalPages, handl
                 {
                     cars.map(car => <div key={car._id}>
                         <div className="flex flex-col md:flex-row w-full h-56 gap-6 p-6 border rounded-md mb-4">
-                            <img src={car.image} alt={car.name} className="md:w-72 h-48" />
+                            <img src={car.image} alt={car.name} className="md:w-72 md:h-48" />
                             <div className="flex-1">
                                 <div className="flex items-center justify-between p-4 ">
                                     <h2 className="text-2xl font-semibold text-blue-800">{car.name}</h2>
