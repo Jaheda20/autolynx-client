@@ -30,3 +30,12 @@ Ensure you have the following installed:
     Axios: Promise-based HTTP client for API requests.
     Material-UI, Daisy-UI: UI component library for React.
     React Router: For routing and navigation.
+
+# Steps
+
+Clone the repository:
+
+    bash
+
+    git clone https://github.com/your-username/autolynx-api.git
+    cd autolynx-api
