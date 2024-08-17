@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 
-const Functionalities = ({cars, refetch, search, setSearch}) => {
+const Functionalities = ({cars, refetch, search, setSearch, setItemsPerPage, itemsPerPage, handlePageChange}) => {
 
     
     const [searchText, setSearchText] = useState('');
@@ -11,6 +11,10 @@ const Functionalities = ({cars, refetch, search, setSearch}) => {
         setSearch(searchText);
         refetch()
     }
+
+    
+
+
 
     return (
         <div className="">
@@ -70,8 +74,8 @@ const Functionalities = ({cars, refetch, search, setSearch}) => {
                 </div>
 
                 <div className="flex gap-4 items-center justify-center">
-                <button className="relative inline-flex items-center justify-center px-8 py-4 overflow-hidden font-semibold text-lg text-white bg-blue-500 rounded-lg group mt-10">
-                        <span className="absolute left-0 w-0 h-full transition-all duration-500 ease-out bg-yellow-600 group-hover:w-full "></span>
+                <button className="relative inline-flex items-center justify-center px-8 py-4 overflow-hidden font-semibold text-lg text-white bg-yellow-500 rounded-lg group mt-10">
+                        <span className="absolute left-0 w-0 h-full transition-all duration-500 ease-out bg-blue-500 group-hover:w-full "></span>
                         <span className="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-gray-700"></span>
                         <span className="relative flex items-center gap-2">
 

@@ -59,7 +59,7 @@ const Cars = () => {
         <div>
             <CarCover></CarCover>
             <div className="max-w-7xl w-full mx-auto flex flex-col md:flex-row justify-between gap-10 mt-20">
-                <div className="w-1/3 shadow-xl">
+                <div className="w-1/3 shadow-xl h-fit">
                     <Functionalities 
                     cars={cars}
                     refetch={refetch}

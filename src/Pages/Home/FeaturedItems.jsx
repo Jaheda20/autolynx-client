@@ -14,7 +14,7 @@ const FeaturedItems = () => {
     const { data: cars = [], isLoading } = useQuery({
         queryKey: ['cars'],
         queryFn: async () => {
-            const { data } = await axiosPublic.get('/cars')
+            const { data } = await axiosPublic.get('/allCars')
             return data
         }
     })
@@ -26,7 +26,7 @@ const FeaturedItems = () => {
     )
 
     return (
-        <div className="my-20 max-w-7xl mx-auto w-full">
+        <div className="mt-20 mb-20 md:mb-40 max-w-7xl mx-auto w-full ">
 
             <h1 className="text-3xl font-bold text-blue-800 text-center">Top Picks for You</h1>
             <p className="text-center mt-4 text-slate-500">Discover our curated selection of top-rated vehicles just for you</p>
