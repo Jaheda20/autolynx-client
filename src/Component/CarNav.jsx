@@ -1,11 +1,11 @@
 import { FaRegUserCircle } from "react-icons/fa";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import { TbLogout } from "react-icons/tb";
-import userPic from "/images/user.png"
+import logo from "/images/logo2.png"
 
 
-const Nav = () => {
+const CarNav = () => {
 
     const { user, logOutUser } = useAuth();
 
@@ -18,10 +18,10 @@ const Nav = () => {
 
     const navOptions = (
         <>
-            <li><NavLink className={({ isActive }) => isActive ? 'bg-yellow-100 font-bold md:text-lg' : "text-blue-100 md:text-lg font-semibold"} to="/">Home</NavLink></li>
-            <li><NavLink className={({ isActive }) => isActive ? 'bg-yellow-100 font-bold md:text-lg' : "text-blue-100 md:text-lg font-semibold"} to="/cars">Cars</NavLink></li>
-            <li><NavLink className={({ isActive }) => isActive ? 'bg-yellow-100 font-bold md:text-lg' : "text-blue-100 md:text-lg font-semibold"} to="/about">About</NavLink></li>
-            <li><NavLink className={({ isActive }) => isActive ? 'bg-yellow-100 font-bold md:text-lg' : "text-blue-100 md:text-lg font-semibold"} to="/contact">Contact</NavLink></li>
+            <li><NavLink className={({ isActive }) => isActive ? 'bg-yellow-600 font-bold md:text-lg' : "text-slate-600 md:text-lg font-semibold"} to="/">Home</NavLink></li>
+            <li><NavLink className={({ isActive }) => isActive ? 'bg-yellow-600 font-bold md:text-lg' : "text-slate-600 md:text-lg font-semibold"} to="/cars">Cars</NavLink></li>
+            <li><NavLink className={({ isActive }) => isActive ? 'bg-yellow-600 font-bold md:text-lg' : "text-slate-600 md:text-lg font-semibold"} to="/about">About</NavLink></li>
+            <li><NavLink className={({ isActive }) => isActive ? 'bg-yellow-600 font-bold md:text-lg' : "text-slate-600 md:text-lg font-semibold"} to="/contact">Contact</NavLink></li>
             {
                 user ? (
                     <>
@@ -30,15 +30,15 @@ const Nav = () => {
                                 <summary className="m-1">
                                     <div>
                                         <img className="w-8 h-8 md:w-12 md:h-12  rounded-full" src={user?.photoURL
-                                        || userPic} alt="" />
+                                        } alt="" />
                                     </div>
 
                                 </summary>
                                 <ul className="p-2 shadow menu dropdown-content z-10 bg-base-100 rounded-box w-48">
                                     <li><p className="text-yellow-600 font-bold">
-                                    {user?.displayName || 'Unknown User'}
+                                        {user?.displayName || 'Unknown User'}
                                     </p>
-                                        </li>
+                                    </li>
 
                                     <li><p onClick={() => handleLogOut()} className="text-yellow-600 font-bold"> <TbLogout className="mr-2" />
                                         Log out </p>
@@ -46,22 +46,12 @@ const Nav = () => {
                                 </ul>
                             </details>
                         </li>
-                        {/* <li>
-                            <div className="tooltip flex tooltip-bottom" data-tip={user?.displayName || 'Unknown User'}>
-                                <img className="w-8 h-8 md:w-12 md:h-12  rounded-full" src={user?.photoURL
-                                } alt="" />
-                            </div>
-                        </li>
-
-                        <li><p onClick={() => handleLogOut()} className="text-yellow-200 md:text-lg"> <TbLogout className="mr-2" />
-                            Log out </p>
-                        </li> */}
 
                     </>
 
                 )
                     :
-                    (<li><NavLink className={({ isActive }) => isActive ? 'text-yellow-200 font-bold md:text-lg md:ml-4' : "md:ml-4 text-blue-100 md:text-lg font-semibold"} to="/login"><FaRegUserCircle />Login
+                    (<li><NavLink className={({ isActive }) => isActive ? 'text-yellow-600 font-bold md:text-lg md:ml-4' : "md:ml-4 text-blue-800 md:text-lg font-semibold"} to="/login"><FaRegUserCircle />Login
                     </NavLink></li>)
             }
         </>
@@ -69,7 +59,7 @@ const Nav = () => {
 
     return (
 
-        <div className="navbar absolute bg-transparent mx-auto w-full z-20">
+        <div className="navbar max-w-9xl mx-auto w-full ">
             <div className="navbar-start">
 
                 <div className="dropdown">
@@ -94,13 +84,15 @@ const Nav = () => {
                     </ul>
                 </div>
 
-
-                <a className="btn btn-ghost text-3xl md:text-5xl gap-0 text-blue-500 font-extrabold">
-
-                    A
-                    <span className="text-yellow-500 text-3xl md:text-5xl font-semibold ">utoLynx</span></a>
-
-
+                <div>
+                    <Link to={"/"} className="flex items-center gap-0">
+                        <img src={logo} alt="" className="w-28 h-28 " />
+                        <p className=" text-3xl md:text-5xl gap-0 text-blue-500 font-extrabold">
+                            A
+                            <span className="text-yellow-500 text-3xl md:text-5xl font-semibold ">utoLynx</span>
+                        </p>
+                    </Link>
+                </div>
 
             </div>
 
@@ -108,10 +100,7 @@ const Nav = () => {
                 <ul className="menu menu-horizontal px-1">
                     {navOptions}
                 </ul>
-                {/* <Link to={'/login'} className="flex items-center gap-2 ml-6 btn btn-ghost text-lg font-semibold text-blue-100">
-                    <FaRegUserCircle />
-                    Login
-                </Link> */}
+
 
             </div>
 
@@ -123,4 +112,4 @@ const Nav = () => {
 
 
 
-export default Nav;
+export default CarNav;

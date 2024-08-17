@@ -2,6 +2,7 @@ import AboutHome from "./AboutHome";
 import Banner from "./Banner";
 import ChooseUs from "./ChooseUs";
 import FeaturedItems from "./FeaturedItems";
+import InfoContact from "./InfoContact";
 
 const Home = () => {
     return (
@@ -10,6 +11,7 @@ const Home = () => {
             <FeaturedItems></FeaturedItems>
             <AboutHome></AboutHome>
             <ChooseUs></ChooseUs>
+            <InfoContact></InfoContact>
         </div>
     );
 };

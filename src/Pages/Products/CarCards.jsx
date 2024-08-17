@@ -4,6 +4,7 @@ import { FaCarSide, FaRoad } from 'react-icons/fa';
 import { BsFillFuelPumpFill } from 'react-icons/bs';
 import { PiLineVerticalThin } from 'react-icons/pi';
 import { SlCalender } from 'react-icons/sl';
+import { Link } from 'react-router-dom';
 
 const CarCards = ({ cars, sort, setSort, refetch, currentPage, totalPages, handlePageChange }) => {
 
@@ -53,93 +54,90 @@ const CarCards = ({ cars, sort, setSort, refetch, currentPage, totalPages, handl
             </div>
 
             <div className="divider w-full"></div>
-            <div className="w-full">
+            <div className="w-full ">
                 {
                     cars.map(car => <div key={car._id}>
-                        <div className="flex flex-col md:flex-row w-full h-56 gap-6 p-6 border rounded-md mb-4">
-                            <img src={car.image} alt={car.name} className="md:w-72 md:h-48" />
-                            <div className="flex-1">
-                                <div className="flex items-center justify-between p-4 ">
-                                    <h2 className="text-2xl font-semibold text-blue-800">{car.name}</h2>
-                                    <div className="bg-yellow-300 text-blue-800 py-2 px-6 custom-shape">
-                                        <p>Our Price</p>
+                        <Link to={`/car/${car._id}`}>
+                            <div className="flex flex-col md:flex-row gap-4 mb-6 shadow-lg">
+                                <img src={car.image} alt={car.name} className="md:w-72 md:h-48" />
+                                <div className="flex-1">
+                                    <div className="flex items-center justify-between p-4 ">
+                                        <h2 className="text-2xl font-semibold text-blue-800">{car.name}</h2>
+                                        <div className="bg-yellow-300 text-blue-800 py-2 px-6 custom-shape">
+                                            <p>Our Price</p>
 
-                                        <h3 className="text-xl font-bold  ">$ {car.price}</h3>
+                                            <h3 className="text-xl font-bold  ">$ {car.price}</h3>
+                                        </div>
                                     </div>
+
+                                    <div className="mt-8 w-full flex p-4">
+                                        <div className="flex gap-2">
+                                            <p className="text-slate-500"><BsFillFuelPumpFill /></p>
+                                            <div>
+                                                <p className="uppercase text-slate-500 text-xs"> Fuel Type</p>
+                                                <p className="text-slate-700 font-bold text-xs">
+                                                    {car.fuel_type}</p>
+
+                                            </div>
+
+                                        </div>
+                                        <div className="flex items-center">
+                                            <PiLineVerticalThin size={40} />
+                                        </div>
+
+                                        <div className="flex gap-2">
+                                            <p className="text-slate-500"><FaCarSide />
+
+                                            </p>
+                                            <div>
+                                                <p className="uppercase text-slate-500 text-xs"> Type</p>
+                                                <p className="text-slate-700 font-bold text-xs">
+                                                    {car.type} </p>
+
+                                            </div>
+
+                                        </div>
+                                        <div className="flex items-center">
+                                            <PiLineVerticalThin size={40} />
+                                        </div>
+
+                                        <div className="flex gap-2">
+                                            <p className="text-slate-500"><FaRoad />
+
+                                            </p>
+                                            <div>
+                                                <p className="uppercase text-slate-500 text-xs"> Mileage</p>
+                                                <p className="text-slate-700 font-bold text-xs">
+                                                    {car.mileage}</p>
+
+                                            </div>
+
+                                        </div>
+                                        <div className="flex items-center">
+                                            <PiLineVerticalThin size={40} />
+                                        </div>
+
+                                        <div className="flex gap-2">
+                                            <p className="text-slate-500">
+                                                <SlCalender />
+
+
+                                            </p>
+                                            <div>
+                                                <p className="uppercase text-slate-500 text-xs"> Year</p>
+                                                <p className="text-slate-700 font-bold text-xs">
+                                                    {car.year}</p>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
                                 </div>
-
-                                <div className="mt-8 w-full flex p-4">
-                                    <div className="flex gap-2">
-                                        <p className="text-slate-500"><BsFillFuelPumpFill /></p>
-                                        <div>
-                                            <p className="uppercase text-slate-500 text-xs"> Fuel Type</p>
-                                            <p className="text-slate-700 font-bold text-xs">
-                                                {car.fuel_type}</p>
-
-                                        </div>
-
-                                    </div>
-                                    <div className="flex items-center">
-                                        <PiLineVerticalThin size={40} />
-                                    </div>
-
-                                    <div className="flex gap-2">
-                                        <p className="text-slate-500"><FaCarSide />
-
-                                        </p>
-                                        <div>
-                                            <p className="uppercase text-slate-500 text-xs"> Type</p>
-                                            <p className="text-slate-700 font-bold text-xs">
-                                               {car.type} </p>
-
-                                        </div>
-
-                                    </div>
-                                    <div className="flex items-center">
-                                        <PiLineVerticalThin size={40} />
-                                    </div>
-
-                                    <div className="flex gap-2">
-                                        <p className="text-slate-500"><FaRoad />
-
-                                        </p>
-                                        <div>
-                                            <p className="uppercase text-slate-500 text-xs"> Mileage</p>
-                                            <p className="text-slate-700 font-bold text-xs">
-                                                {car.mileage}</p>
-
-                                        </div>
-
-                                    </div>
-                                    <div className="flex items-center">
-                                        <PiLineVerticalThin size={40} />
-                                    </div>
-
-                                    <div className="flex gap-2">
-                                        <p className="text-slate-500">
-                                        <SlCalender />
-
-
-                                        </p>
-                                        <div>
-                                            <p className="uppercase text-slate-500 text-xs"> Year</p>
-                                            <p className="text-slate-700 font-bold text-xs">
-                                                {car.year}</p>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                {/* <div className="flex items-start gap-4">
-                                <FaRoad size={20}/>
-                                    <div>
-                                        <p>Mileage</p>
-                                        <p>{car.mileage}</p>
-                                    </div>
-                                </div> */}
                             </div>
-                        </div>
+
+                        </Link>
+
 
                     </div>)
                 }

@@ -16,7 +16,7 @@ const Banner = () => {
                     <p className="mb-5 text-lg font-bold">
                     Discover a wide range of high-quality vehicles tailored to your needs. At AutoLynx, we help you start your journey with the perfect car.
                     </p>
-                    <button className="btn btn-primary">Get Started</button>
+                    
                 </div>
             </div>
         </div>

@@ -7,6 +7,7 @@ import Login from "../Pages/Login/Login";
 import About from "../Pages/About/About";
 import Contact from "../Pages/Contact/Contact";
 import Cars from "../Pages/Products/Cars";
+import CarDetail from "../Pages/Products/CarDetail";
 
 const router = createBrowserRouter([
     {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
         }
       ],
       
+    },
+    {
+        path: "/car/:id",
+        element: <CarDetail></CarDetail>
     },
     {
         path: "/register",

@@ -1,6 +1,5 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "/images/logo2.png"
-import { FcGoogle } from "react-icons/fc";
 import useAuth from "../../Hooks/useAuth";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
