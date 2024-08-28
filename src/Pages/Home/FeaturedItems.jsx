@@ -64,7 +64,10 @@ const FeaturedItems = () => {
                         cars.slice(0, 9).map((car, index) => (
                             <SwiperSlide key={index}>
                                 <div className="p-4 hover:border">
-                                    <img src={car.image} alt={car.name} className="h-48 object-cover w-full" />
+                                    <Link to={`/car/${car._id}`}>
+                                        <img src={car.image} alt={car.name} className="h-48 object-cover w-full" />
+                                    </Link>
+
 
                                 </div>
 

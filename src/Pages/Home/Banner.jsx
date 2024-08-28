@@ -4,7 +4,7 @@ const Banner = () => {
             <div
                 className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                 style={{
-                    backgroundImage: "url(https://i.ibb.co/HPP92mP/photo-1530648006762-8d9578c273c4-q-80-w-1486-auto-format-fit-crop-ixlib-rb-4-0.jpg)",
+                    backgroundImage: "url(https://i.ibb.co/d4x9pLd/tim-foster-n-Cy-Hu-Wc-Xm-E-unsplash.jpg)",
                 }}
             >
                 <div className="absolute inset-0 bg-gradient-to-br from-[#151515] to-transparent mix-blend-darken"></div>
@@ -14,7 +14,7 @@ const Banner = () => {
                 <div className="max-w-xl">
                     <h1 className="mb-5 text-6xl font-bold ">Your Journey Begins with the Right Car</h1>
                     <p className="mb-5 text-lg font-bold">
-                    Discover a wide range of high-quality vehicles tailored to your needs. At AutoLynx, we help you start your journey with the perfect car.
+                    Discover a wide range of high-quality vehicles tailored to your needs. At AutoLynx, we help you start your journey with the perfect car
                     </p>
                     
                 </div>

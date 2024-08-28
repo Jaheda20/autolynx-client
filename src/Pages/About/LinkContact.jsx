@@ -17,7 +17,7 @@ const LinkContact = () => {
             
             <div className="max-w-5xl w-full mx-auto flex flex-col items-center justify-center">
                 
-                <h1 className="text-3xl font-bold text-blue-50 mb-8">Need help to buy/sell your car?</h1>
+                <h1 className="text-3xl font-bold text-yellow-400 mb-6 ">Need help to buy/sell your car?</h1>
                 <p className="text-white mt-10 text-xl max-w-3xl">Just let us know what do you like. Our service is just one call away. Don't wait! Experience exceptional service and support with ease. Reach out to us today and let us know what you need. Our friendly team is ready and eager to assist you</p>
                 <Link to="/contact">
                     <button className="relative inline-flex items-center justify-center px-8 py-4 overflow-hidden font-semibold text-lg text-white bg-blue-500 rounded-lg group mt-10">
