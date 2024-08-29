@@ -1,28 +1,39 @@
 import { useParams } from "react-router-dom";
 import CarNav from "../../Component/CarNav";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import Footer from "../../Shared/Footer";
 import { useEffect, useState } from "react";
 import RatingComponent from "../../Component/RatingComponent";
 import { CiHeart } from "react-icons/ci";
+import useAuth from "../../Hooks/useAuth";
+import Swal from "sweetalert2";
+import { FaHeart } from "react-icons/fa";
 
 
 const CarDetail = () => {
 
     const { id } = useParams();
+    const { user } = useAuth();
     const axiosPublic = useAxiosPublic();
     const [formattedTimestamp, setFormattedTimestamp] = useState('')
+    const [clicked, setClicked] = useState(false)
 
-    const { data: car = [], isLoading, refetch } = useQuery({
+    const { data: car = [] } = useQuery({
         queryKey: ['car', id],
         queryFn: async () => {
             const { data } = await axiosPublic.get(`/car/${id}`)
             return data
         }
+
     })
 
     useEffect(() => {
+        const isCarInWishlist = localStorage.getItem(`wishlist_${id}`)
+        if(isCarInWishlist) {
+            setClicked(true)
+        }
+
         if (car.timestamp) {
             const formatted = new Intl.DateTimeFormat('en-US', {
                 year: 'numeric',
@@ -38,8 +49,28 @@ const CarDetail = () => {
 
     }, [car.timestamp])
 
+    const { mutateAsync } = useMutation({
+        mutationFn: async wishlistData => {
+            const { data } = await axiosPublic.post(`/wishlist/${user?.email}`, wishlistData)
+            return data;
+        },
+        onSuccess: () => {
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: `${car?.name} has been added Successfully to your wishlist!`,
+                showConfirmButton: false,
+                timer: 1500
+            })
+            localStorage.setItem(`wishlist_${id}`, true)
+            setClicked(true);
+        }
+    })
 
-
+    const handleWishlist = async () => {
+        await mutateAsync({ car, carId: car?._id, email: user?.email })
+        setClicked(true)
+    }
 
     return (
         <div className="w-full">
@@ -65,16 +96,26 @@ const CarDetail = () => {
 
                     <div className="relative ">
                         <img src={car.image} alt="" className="mt-10 w-full" />
-                        <button className="btn btn-ghost flex items-center gap-2 absolute top-6 right-6 bg-yellow-300 bg-opacity-50"> <CiHeart size={24} />
+                        <button
+                            onClick={handleWishlist}
+                            disabled={clicked}
+                            className="btn btn-ghost flex items-center gap-2 absolute top-6 right-2 bg-yellow-300 bg-opacity-50 text-slate-700">
+
+                            {
+                                clicked ? <FaHeart size={24} /> : <CiHeart size={24} />
+                            }
+
                             <span className="font-bold text-lg">Add to wishlist</span>
                         </button>
                     </div>
 
                 </div>
-                <div className="p-4 flex items-center mt-6">
+
+                <div className="p-4 flex items-center mt-6 gap-2">
                     <h3 className="text-xl font-semibold text-blue-800 mb-2">Customer Ratings </h3>
                     <RatingComponent value={Number(car.ratings)} readOnly={true} />
                 </div>
+
 
                 <div className="divider divider-primary"></div>
                 <p className="p-4 text-lg text-blue-800 font-bold">Brief Description:<span className="text-slate-500 font-normal ml-2">{car.description}</span> </p>
