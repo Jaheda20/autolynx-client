@@ -5,6 +5,8 @@ import { useQuery } from "@tanstack/react-query";
 import Footer from "../../Shared/Footer";
 import { useEffect, useState } from "react";
 import RatingComponent from "../../Component/RatingComponent";
+import { CiHeart } from "react-icons/ci";
+
 
 const CarDetail = () => {
 
@@ -60,13 +62,18 @@ const CarDetail = () => {
                         </div>
 
                     </div>
-                   
 
-                    <img src={car.image} alt="" className="mt-10 w-full"/>
+                    <div className="relative ">
+                        <img src={car.image} alt="" className="mt-10 w-full" />
+                        <button className="btn btn-ghost flex items-center gap-2 absolute top-6 right-6 bg-yellow-300 bg-opacity-50"> <CiHeart size={24} />
+                            <span className="font-bold text-lg">Add to wishlist</span>
+                        </button>
+                    </div>
+
                 </div>
                 <div className="p-4 flex items-center mt-6">
                     <h3 className="text-xl font-semibold text-blue-800 mb-2">Customer Ratings </h3>
-                    <RatingComponent value={Number(car.ratings)} readOnly={true}  />
+                    <RatingComponent value={Number(car.ratings)} readOnly={true} />
                 </div>
 
                 <div className="divider divider-primary"></div>

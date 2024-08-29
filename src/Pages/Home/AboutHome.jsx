@@ -16,7 +16,7 @@ const AboutHome = () => {
         >
             <div className="max-w-7xl w-full mx-auto flex flex-col md:flex-row justify-between gap-10 h-full">
             <div className="md:w-1/2 relative">
-                <img src="https://t4.ftcdn.net/jpg/06/35/00/91/240_F_635009125_IoYwM8yXWpgbdKYFaUR4qI5H8NBbqNrz.jpg" className="absolute top-16 left-16 w-4/5"/>
+                <img src="https://img.freepik.com/premium-photo/car-dealer-sales-person-portrait_993044-6590.jpg" className="absolute top-16 left-16 w-4/5"/>
                 <div className="bg-yellow-500 w-36 p-8 absolute left-[-10] bottom-8 animate-bounce">
                     <p className="text-3xl font-semibold text-blue-800">10 
                         <span className="text-xl ml-1">Years
